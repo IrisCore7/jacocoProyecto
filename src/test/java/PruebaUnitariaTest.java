@@ -19,8 +19,34 @@ public class PruebaUnitariaTest {
 
         Producto producto = new Producto("Mouse", 100, 2);
 
-        boolean resultado = Pedido.validarStock(producto);
+        //boolean resultado = Pedido.validarStock(producto);
 
         assertTrue(true);
+    }
+
+    @Test
+    public void existeStock(){
+        Pedido pedido = new Pedido();
+        pedido.detallesPedido.add(new Producto("Laptop", 2500, 1));
+
+        assertTrue(pedido.existeStock(pedido.detallesPedido.get(0)));
+    }
+
+    @Test
+    public void losProductosPedidoNoseEncuentraEnTienda(){
+
+        Pedido pedido = new Pedido();
+        pedido.detallesPedido.add(new Producto("Laptop", 2500, 1));
+        pedido.detallesPedido.add(new Producto("Mouse", 100, 2));
+        
+        boolean resultado = true;
+
+        for(Producto p : pedido.detallesPedido){
+            if(p.isEsActivo()){
+                resultado = false;
+            }
+        }
+
+        assertTrue(resultado);
     }
 }

@@ -51,6 +51,14 @@ public class Pedido {
 
     }
 
+    public boolean existeStock(Producto producto){
+        if(producto.getCantidad() >= 0){
+            return true;
+        }
+
+        return false;
+    }
+
     public double calcularTotalPedido(List<Producto> productos, double descuento) {
         if (productos == null || productos.isEmpty()) {
             throw new IllegalArgumentException("Error: no hay productos en el pedido");
